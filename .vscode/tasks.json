@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Dev",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "dependsOrder": "parallel",
+            "dependsOn": [
+                "App",
+                "Artsy Chaos Api"
+            ]
+        },
+        {
+            "label": "App",
+            "type": "npm",
+            "path": "app/",
+            "script": "dev",
+            "isBackground": true,
+            "presentation": {
+                "panel": "dedicated",
+            },
+            "problemMatcher": [
+                {
+                    "owner": "typescript",
+                    "source": "Typescript",
+                    "fileLocation": "absolute",
+                    "applyTo": "allDocuments",
+                    "background": {
+                        "activeOnStart": true
+                        // "beginsPattern": "sd",
+                        // "endsPattern": " > "
+                    },
+                    "pattern": [
+                        {
+                            "regexp": "(ERROR|WARNING)\\(TypeScript\\)  (.*)",
+                            "severity": 1,
+                            "message": 2
+                        },
+                        {
+                            "regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+                            "file": 1,
+                            "line": 2,
+                            "column": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Artsy Chaos Api",
+            "type": "shell",
+            "command": "cd ./artsy-chaos-api; dotnet run --launch-profile https",
+            "isBackground": true,
+            "presentation": {
+                "panel": "dedicated",
+            }
+        }
+    ]
+}

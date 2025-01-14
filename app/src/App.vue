@@ -1,22 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import NavBar from './components/nav/NavBar.vue';
-import { ref } from 'vue';
 import Footer from './components/footer/Footer.vue';
-
-// Refs
-let darkmode = ref(false)
-
-// Functions
-function toggleDarkmode(value: boolean) {
-  darkmode.value = value
-}
+import { store } from './store/Store';
 
 </script>
 
 <template>
-  <div class="layout" :class="{'dark': darkmode}">
-    <NavBar @toggleDarkmode="toggleDarkmode"></NavBar>
+  <div class="layout" :class="{'layout--dark': store.darkmode}">
+    <NavBar />
     <main>
       <RouterView />
     </main>

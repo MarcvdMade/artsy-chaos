@@ -1,27 +1,23 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import ToggleInput from '../inputs/ToggleInput.vue';
-
-// Emits
-const emit = defineEmits<{
-    (e: 'toggleDarkmode', value: boolean): void
-}>()
+import { store } from '../../store/Store';
 
 // Refs
 const open = ref(false)
 
 // Functions
 function toggleDarkmode(value: boolean) {
-    emit('toggleDarkmode', value)
+    store.setDarkmode(value)
 }
 </script>
 
 <template>
     <header>
-        <nav class="nav">
+        <nav class="nav" :class="{'nav--dark': store.darkmode}">
             <div class="toolbar">
                 <div class="nav-left-wrapper">
-                    <button @click="open = true" class="dropdown-button">
+                    <button @click="open = true" class="dropdown-button" :class="{'dropdown-button--dark': store.darkmode}">
                         <span class="bar"></span>
                         <span class="bar"></span>
                         <span class="bar"></span>
@@ -34,7 +30,7 @@ function toggleDarkmode(value: boolean) {
     
         </nav>
         <Transition name="menu">
-            <ul class="nav-menu" v-if="open">
+            <ul class="nav-menu" :class="{'nav-menu--dark': store.darkmode}" v-if="open">
                 <div @click="open = false">Close</div>
                 <RouterLink class="nav-item" to="/">Home</RouterLink>
                 <RouterLink class="nav-item" to="/about">About</RouterLink>
@@ -46,10 +42,28 @@ function toggleDarkmode(value: boolean) {
 <style lang="css" scoped>
     .nav {
         background-color: var(--primary-light);
-        padding: 15px 10px
+        border-bottom: var(--primary-light) 2px solid;
+        padding: 15px 10px;
+        transition: all 200ms ease-in-out;
+
+        &.nav--dark {
+            background-color: var(--black);
+            border-bottom: var(--primary-dark) 2px solid;
+        }
     }
     .nav-menu {
         background-color: var(--white);
+        transition: all 200ms ease-in-out;
+        &.nav-menu--dark {
+            background-color: var(--black);
+            .nav-item {
+                color: var(--white);
+                &:hover {
+                    color: var(--primary-dark);
+                }
+            }
+        }
+
         z-index: 2;
 
         width: 200px;
@@ -93,6 +107,14 @@ function toggleDarkmode(value: boolean) {
         flex-direction: column;
         gap: 4px;
         cursor: pointer;
+
+        &.dropdown-button--dark {
+            &:hover {
+                .bar {
+                    background-color: var(--primary-dark);
+                }
+            }
+        }
 
         &:hover {
             .bar {

@@ -1,9 +1,16 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  color: var(--black);
-  background-color: var(--white);
   padding: 0;
+}
+
+.layout {
+  background-color: var(--white);
+  color: var(--black);
+  transition: all 200ms ease-in-out;
+}
+.layout--dark {
+  background-color: var(--black);
+  color: var(--white);
 }
 
 body {

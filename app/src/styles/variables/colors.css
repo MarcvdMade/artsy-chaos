@@ -4,6 +4,12 @@
     initial-value: #f4f4f4;
 }
 
+@property --white-dark {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #b8b8b8;
+}
+
 @property --black {
     syntax: "<color>";
     inherits: false;

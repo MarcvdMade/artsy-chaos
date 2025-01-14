@@ -1,0 +1,41 @@
+@property --white {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #f4f4f4;
+}
+
+@property --black {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #242424;
+}
+
+@property --black-dark {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #000;
+}
+
+@property --black-light {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #4f4f4f;
+}
+
+@property --primary-dark {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #5D3FD3;
+}
+
+@property --primary-light {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #CF9FFF;
+}
+
+@property --primary-light-darker {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #9870bf;
+}

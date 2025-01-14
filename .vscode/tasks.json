@@ -8,7 +8,7 @@
                 "isDefault": true
             },
             "runOptions": {
-                "runOn": "folderOpen"
+                // "runOn": "folderOpen"
             },
             "dependsOrder": "parallel",
             "dependsOn": [
@@ -27,30 +27,29 @@
             },
             "problemMatcher": [
                 {
-                    "owner": "typescript",
-                    "source": "Typescript",
-                    "fileLocation": "absolute",
-                    "applyTo": "allDocuments",
-                    "background": {
-                        "activeOnStart": true
-                        // "beginsPattern": "sd",
-                        // "endsPattern": " > "
-                    },
-                    "pattern": [
-                        {
-                            "regexp": "(ERROR|WARNING)\\(TypeScript\\)  (.*)",
-                            "severity": 1,
-                            "message": 2
-                        },
-                        {
-                            "regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
-                            "file": 1,
-                            "line": 2,
-                            "column": 3
-                        }
-                    ]
-                }
-            ]
+                  "owner": "vue-cli",
+                  "fileLocation": "absolute",
+                  "source": "webpack-typescript", // name this whatever you want (I think)
+                  "background": {
+                      "activeOnStart": true,
+                      "beginsPattern": "Starting type checking service",
+                      "endsPattern": " DONE\\s+Build complete.*$"
+                  },
+                  "pattern": [
+                      {
+                          "regexp": "^(ERROR|WARNING) in (.*)\\(.*$",
+                          "severity": 1,
+                          "file": 2,
+                      },
+                      {
+                          "regexp": "^([0-9]+):([0-9]+) ([\\s\\S]*)$",
+                          "line": 1,
+                          "column": 2,
+                          "message": 3
+                      }
+                  ]
+              },
+            ],
         },
         {
             "label": "Artsy Chaos Api",

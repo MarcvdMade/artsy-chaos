@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { store } from '../../store/Store';
+import { store } from '../../store/store';
 
 // Emits
 const emit = defineEmits<{
@@ -16,7 +16,7 @@ function valueChanged() {
 </script>
     
 <template>
-    <div>
+    <div class="switch-wrapper">
         <label class="switch">
             <input @change="valueChanged" v-model="value" type="checkbox" name="slider">
             <span class="slider" :class="{'slider--dark': store.darkmode}"></span>
@@ -50,7 +50,6 @@ function valueChanged() {
         border: var(--black-dark) 2px solid;
         border-radius: 5px;
         box-shadow: var(--black-dark) 3px 3px 0;
-        transition: all 200ms ease-in-out;
 
         &.slider--dark {
             background-color: var(--black-light);
@@ -60,8 +59,8 @@ function valueChanged() {
     .slider:before {
         position: absolute;
         content: "";
-        height: 15px;
-        width: 15px;
+        height: 20px;
+        width: 20px;
         top: -5px;
         left: -5px;
         background-color: var(--white);

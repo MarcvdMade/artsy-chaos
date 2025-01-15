@@ -1,21 +1,38 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
 }
 
 .layout {
   background-color: var(--white);
   color: var(--black);
-  transition: all 200ms ease-in-out;
+  height: 100%;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 .layout--dark {
   background-color: var(--black);
   color: var(--white);
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  line-height: inherit;
 }
 
 p {

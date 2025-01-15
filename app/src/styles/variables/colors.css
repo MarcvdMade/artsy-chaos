@@ -37,11 +37,11 @@
 @property --primary-light {
     syntax: "<color>";
     inherits: false;
-    initial-value: #CF9FFF;
+    initial-value: #BF40BF;
 }
 
 @property --primary-light-darker {
     syntax: "<color>";
     inherits: false;
-    initial-value: #9870bf;
+    initial-value: #a337a3;
 }

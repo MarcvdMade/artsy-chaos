@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import ToggleInput from '../inputs/ToggleInput.vue';
-import { store } from '../../store/Store';
+import { store } from '../../store/store';
 
 // Refs
 const open = ref(false)
@@ -13,38 +13,40 @@ function toggleDarkmode(value: boolean) {
 </script>
 
 <template>
-    <header>
-        <nav class="nav" :class="{'nav--dark': store.darkmode}">
-            <div class="toolbar">
-                <div class="nav-left-wrapper">
-                    <button @click="open = true" class="dropdown-button" :class="{'dropdown-button--dark': store.darkmode}">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </button>
-                </div>
-                <div class="nav-right-wrapper">
-                    <ToggleInput @changed="toggleDarkmode" />
-                </div>
-            </div>
-    
-        </nav>
-        <Transition name="menu">
-            <ul class="nav-menu" :class="{'nav-menu--dark': store.darkmode}" v-if="open">
-                <div @click="open = false">Close</div>
-                <RouterLink class="nav-item" to="/">Home</RouterLink>
-                <RouterLink class="nav-item" to="/about">About</RouterLink>
-            </ul>
-        </Transition>
-    </header>
+    <nav class="nav" :class="{'nav--dark': store.darkmode}">
+        <div class="nav-left-wrapper">
+            <button @click="open = true" class="dropdown-button" :class="{'dropdown-button--dark': store.darkmode}">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+        <div class="nav-right-wrapper">
+            <ToggleInput @changed="toggleDarkmode" />
+        </div>
+    </nav>
+    <Transition name="menu">
+        <ul class="nav-menu" :class="{'nav-menu--dark': store.darkmode}" v-if="open">
+            <div @click="open = false">Close</div>
+            <RouterLink class="nav-item" to="/">Home</RouterLink>
+            <RouterLink class="nav-item" to="/about">About</RouterLink>
+        </ul>
+    </Transition>
 </template>
 
 <style lang="css" scoped>
     .nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         background-color: var(--primary-light);
         border-bottom: var(--primary-light) 2px solid;
         padding: 15px 10px;
-        transition: all 200ms ease-in-out;
+        transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+        width: 100%;
+
+        position: fixed;
+        z-index: 2;
 
         &.nav--dark {
             background-color: var(--black);
@@ -53,7 +55,8 @@ function toggleDarkmode(value: boolean) {
     }
     .nav-menu {
         background-color: var(--white);
-        transition: all 200ms ease-in-out;
+        transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+        position: fixed;
         &.nav-menu--dark {
             background-color: var(--black);
             .nav-item {
@@ -64,7 +67,7 @@ function toggleDarkmode(value: boolean) {
             }
         }
 
-        z-index: 2;
+        z-index: 3;
 
         width: 200px;
         height: 100%;
@@ -124,24 +127,18 @@ function toggleDarkmode(value: boolean) {
 
         .bar {
             width: 34px;
-            height: 2px;
+            height: 6px;
             background-color: var(--white);
             border-radius: 5px;
             transition: all 200ms ease-in-out;
-            border: 3px var(--black-dark) solid;
+            border: 2px var(--black-dark) solid;
             box-shadow: var(--black-dark) 3px 3px 0;
         }
     }
 
-    .toolbar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
     .menu-enter-active,
     .menu-leave-active {
-        transition: left 200ms ease;
+        transition: left 200ms linear;
     }   
     .menu-enter-from,
     .menu-leave-to {

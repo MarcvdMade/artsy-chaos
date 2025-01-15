@@ -1,10 +1,10 @@
 <script setup lang="ts">
-
+import Hero from './hero/Hero.vue';
 </script>
 
 <template>
     <div>
-        <h1>Home</h1>
+        <Hero />
     </div>
 </template>
 
